@@ -44,6 +44,7 @@ node {
     stage('Clone sources') {
         git url: 'https://github.com/dharmendrasoni12/webapp.git'
     }
+	
 
     stage('Artifactory configuration') {
         // Tool name from Jenkins configuration
