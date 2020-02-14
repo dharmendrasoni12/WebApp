@@ -16,7 +16,6 @@ public class acat {
 	public String URL1 = "http://3.135.219.186:8080/ProdWebapp/avncreatepage.jsp";
 	//public String URL = "http://localhost:8080/AVNCommunication-1.0/avnlogin.jsp";
 	//public String URL1 = "http://localhost:8080/AVNCommunication-1.0/avncreatepage.jsp";
-	
 	@Test(priority = 0)
 	public void checkin() {
 		driver = new HtmlUnitDriver();
