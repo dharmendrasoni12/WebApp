@@ -30,4 +30,3 @@ node {
         server.publishBuildInfo buildInfo
     }
     }
-	 
