@@ -70,8 +70,8 @@ node {
     }
 	
 	stage('docker build/push') {
-     docker.withRegistry('https://index.docker.io/v1/', 'docker') {
-       def app = docker.build("nehadockerdtd/pheonix", '.').push()
+     docker.withRegistry('', 'docker') {
+       def app = docker.build("dharmendrasoni12/docker-webapp", '.').push()
      }
 
     }
