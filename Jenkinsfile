@@ -19,6 +19,7 @@ slackSend(color: color, message: msg)
 }
 
 
+
 node {
 try {
 notifySlack()
@@ -31,6 +32,7 @@ notifySlack()
     notifySlack(currentBuild.result)
 }
 }
+
 
 
 node {
