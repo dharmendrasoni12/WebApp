@@ -18,6 +18,7 @@ def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_
 slackSend(color: color, message: msg)
 }
 
+
 node {
 try {
 notifySlack()
