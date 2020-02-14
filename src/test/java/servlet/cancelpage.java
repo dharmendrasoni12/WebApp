@@ -88,4 +88,3 @@ public class cancelpage extends HttpServlet {
 				}
 			}
 }
-
