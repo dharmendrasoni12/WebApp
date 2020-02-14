@@ -79,7 +79,7 @@ public class cancelpage extends HttpServlet {
 				}
 				catch(ClassNotFoundException cnfe)
 				{
-					out.println("class not found");
+					out.println("class not fund");
 				}
 				}
 			catch(SQLException e)
