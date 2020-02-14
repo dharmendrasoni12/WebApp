@@ -68,4 +68,12 @@ node {
     stage('Publish build info') {
         server.publishBuildInfo buildInfo
     }
+	
+	stage('docker build/push') {
+     docker.withRegistry('https://index.docker.io/v1/', 'docker') {
+       def app = docker.build("nehadockerdtd/pheonix", '.').push()
+     }
+
+    }
+	
     }
