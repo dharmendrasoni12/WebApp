@@ -68,6 +68,9 @@ node {
     stage('Publish build info') {
         server.publishBuildInfo buildInfo
     }
+	stage('performance test') {
+		blazeMeterTest credentialsId: 'blazemeter', testId: '7729455.taurus', workspaceId: '431775'
+	}
 	
 	stage('docker build/push') {
      docker.withRegistry('', 'docker') {
@@ -75,7 +78,4 @@ node {
      }
 
     }
-	stage('performance test') {
-		blazeMeterTest credentialsId: 'blazemeter', testId: '7729455.taurus', workspaceId: '431775'}
-
     }
