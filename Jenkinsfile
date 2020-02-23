@@ -56,6 +56,22 @@ node {
         rtMaven.deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server
         rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
     }
+	
+          stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('sonar') {
+                sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://35.225.184.76:9000/ -Dsonar.login=ff177383dda7da09c6364187a7d1b057c7fe64b7 -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.exclusions=**/test/java/servlet/createpage_junit.java'
+              }
+            }
+          }
+          stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
 
 	
 	
@@ -68,9 +84,7 @@ node {
     stage('Publish build info') {
         server.publishBuildInfo buildInfo
     }
-	stage('performance test') {
-		blazeMeterTest credentialsId: 'blazemeter', testId: '7729455.taurus', workspaceId: '431775'
-	}
+	
 	
 	stage('docker build/push') {
      docker.withRegistry('', 'docker') {
