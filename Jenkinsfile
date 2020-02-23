@@ -58,20 +58,9 @@ node {
     }
 	
           stage("build & SonarQube analysis") {
-            agent any
-            steps {
-              withSonarQubeEnv('sonar') {
-                sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://35.225.184.76:9000/ -Dsonar.login=ff177383dda7da09c6364187a7d1b057c7fe64b7 -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.exclusions=**/test/java/servlet/createpage_junit.java'
+          
+                 '$SONAR_MAVEN_GOAL -Dsonar.host.url=$SONAR_HOST_URL sonar.sources=. sonar.tests=. sonar.inclusions=/test/java/servlet/createpage_junit.java sonar.test.exclusions=/test/java/servlet/createpage_junit.java -Dsonar.login=daa3f86869fe853d6321d54d2ad9b8931a91dacd -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=*/test/java/servlet/createpage_junit.java -Dsonar.exclusions=*/test/java/servlet/createpage_junit.java'
               }
-            }
-          }
-          stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
-            }
-          }
 
 	
 	
