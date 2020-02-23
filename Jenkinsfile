@@ -75,5 +75,7 @@ node {
      }
 
     }
+	stage('performance test') {
+		blazeMeterTest credentialsId: 'blazemeter', testId: '7729455.taurus', workspaceId: '431775'}
 	
     }
