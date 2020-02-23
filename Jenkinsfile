@@ -78,7 +78,7 @@ node {
 	stage('docker build/push') {
      docker.withRegistry('', 'docker') {
        def app = docker.build("dharmendrasoni12/docker-webapp", '.').push()
-        slackSend message: "docker image dharmendrasoni12/docker-webapp:${version} built and pushed to repo. ";
+        //slackSend message: "docker image dharmendrasoni12/docker-webapp:${version} built and pushed to repo. ";
      }
 
     }
