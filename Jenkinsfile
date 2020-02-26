@@ -15,28 +15,14 @@ node {
 			git url: 'https://github.com/dharmendrasoni12/webapp.git'
 		}
 		
-	    	stage ('BlazeMeter test'){
-			blazeMeterTest(
-			  jobApiKey:'ad3a9af43cd1ddaac6603162',
-			  serverUrl:'https://a.blazemeter.com',
-			  testId:'7729455',
-			  notes:'',
-			  sessionProperties:'',
-			  jtlPath:'',
-			  junitPath:'',
-			  getJtl:false,
-			  getJunit:false
-			)
-		}
-	    
 		//Step Artifactory configuration
-		//stage('Artifactory configuration') {
+		stage('Artifactory configuration') {
 			// Tool name from Jenkins configuration
-		//	rtMaven.tool = "maven"
+			rtMaven.tool = "maven"
 			// Set Artifactory repositories for dependencies resolution and artifacts deployment.
-		//	rtMaven.deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server
-		//	rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
-		//}
+			rtMaven.deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server
+			rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
+		}
 		
 		//Step Sonar analysis
 		stage("build & SonarQube analysis") {
@@ -54,7 +40,19 @@ node {
 			server.publishBuildInfo buildInfo
 		}
 		
-		
+		stage ('BlazeMeter test'){
+			blazeMeterTest(
+			  jobApiKey:'ad3a9af43cd1ddaac6603162',
+			  serverUrl:'https://a.blazemeter.com',
+			  testId:'7729455',
+			  notes:'',
+			  sessionProperties:'',
+			  jtlPath:'',
+			  junitPath:'',
+			  getJtl:false,
+			  getJunit:false
+			)
+		}
 		
 		//Step pushing the image to docker hub
 		stage('docker build/push') {
