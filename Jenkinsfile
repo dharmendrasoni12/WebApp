@@ -13,21 +13,7 @@ node {
 		//Step git clone from master
 		stage('Clone sources') {
 			git url: 'https://github.com/dharmendrasoni12/webapp.git'
-		}
-	    
-		stage ('BlazeMeter test'){
-			blazeMeterTest(
-			  jobApiKey:'ad3a9af43cd1ddaac6603162',
-			  serverUrl:'https://a.blazemeter.com',
-			  testId:'7729455',
-			  notes:'',
-			  sessionProperties:'',
-			  jtlPath:'',
-			  junitPath:'',
-			  getJtl:false,
-			  getJunit:false
-			)
-		}
+		}	    		
 	    
 		//Step Artifactory configuration
 		stage('Artifactory configuration') {
@@ -54,7 +40,19 @@ node {
 			server.publishBuildInfo buildInfo
 		}
 		
-		
+	   	stage ('BlazeMeter test'){
+			blazeMeterTest(
+			  jobApiKey:'ad3a9af43cd1ddaac6603162',
+			  serverUrl:'https://a.blazemeter.com',
+			  testId:'7729455',
+			  notes:'',
+			  sessionProperties:'',
+			  jtlPath:'',
+			  junitPath:'',
+			  getJtl:false,
+			  getJunit:false
+			)
+		}
 		
 		//Step pushing the image to docker hub
 		stage('docker build/push') {
