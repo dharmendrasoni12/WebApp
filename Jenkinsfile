@@ -42,7 +42,8 @@ node {
 		
 		//Step to deploy the application
 		stage('deploy to tomcat'){
-			deploy adapters: [tomcat7(credentialsId: 'jenkins', path: '', url: 'http://18.189.182.156:8080/')], contextPath: '/QAWebapp', onFailure: false, war: '**/*.war'
+			deploy adapters: [tomcat7(credentialsId: 'jenkins', path: '', url: 'http://18.189.182.156:8080/')], contextPath: '/Webapp', onFailure: false, war: '**/*.war'
+			slackSend message: "Application deployed to Production http://18.189.182.156:8080/Webapp";
 		}
 		
 	    /*
