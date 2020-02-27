@@ -41,9 +41,9 @@ node {
 		}
 		
 	   	stage ('BlazeMeter test'){
-		    blazeMeterTest credentialsId:'ad3a9af43cd1ddaac6603162',
+		    blazeMeterTest credentialsId: 'blazemeter',
 		    serverUrl:'https://a.blazemeter.com',
-		    testId:'53',
+		    testId:'7729455',
 		    notes:'',
 		    sessionProperties:'',
 		    jtlPath:'',
