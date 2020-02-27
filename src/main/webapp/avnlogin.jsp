@@ -4,7 +4,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>AVNLogin</title>
+  <title>Parts Unlimited</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
@@ -163,9 +163,9 @@ position: absolute;
 <div id="headlinks">
 <p style="text-align:right"><a href="">Business</a>&#160;&#160;<a href="">Contact Us</a></p>
 </div><br>
-<img src="logopost.jpg" alt="HTML5 Icon" style="width:325px;height:185px;position:absolute;left:60px;top:10px;">
+<img src="parts_unlimited_logo.png" alt="HTML5 Icon" style="width:280px;height:100px;position:absolute;left:60px;top:10px;">
 <b>
-<h1 style="color:#968370;font-size: 350%;position:absolute;left:460px;top:80px;">MARS COMMUNICATION</h1></b>
+<h1 style="color:#968370;font-size: 350%;position:absolute;left:460px;top:80px;">Parts Unlimited</h1></b>
 <br><br><br>
 <section class="wlp-login-message-content">
 <p><b>
@@ -174,7 +174,7 @@ position: absolute;
 </i>
 </b>
 <br><br>
-The Mars Help Desk, can assist with issues and concerns regarding:
+Parts Unlimited Help Desk, can assist with issues and concerns regarding:
 <br><br>
 <i>
 <font color="orange"> Troubleshooting problems</font>
