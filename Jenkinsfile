@@ -32,7 +32,7 @@ node {
 
 		//Step Maven build
 		stage('Maven build') {
-			buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean install deploy'
+			buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean install'
 		}
 		
 		//Step publish the build
@@ -57,6 +57,11 @@ node {
 		 docker.withRegistry('', 'docker') {
 		   def app = docker.build("dharmendrasoni12/docker-webapp", '.').push()
 			slackSend message: "Docker image dharmendrasoni12/docker-webapp build and pushed to Docker Hub Repository.";
+		 }
+			
+		 stage('deploy to tomcat'){
+		 	deploy adapters: [tomcat7(credentialsId: 'tomcat-tharun', path: '', url: 'http://18.189.182.156:8080/')], contextPath: '/QAWebapp', onFailure: false, war: '**/*.war'
+
 		 }
 
 		}
