@@ -65,7 +65,6 @@ node {
 		   def app = docker.build("dharmendrasoni12/docker-webapp", '.').push()
 			slackSend message: "Docker image dharmendrasoni12/docker-webapp build and pushed to Docker Hub Repository.";
 		 }
-
 		}
 	} catch (e) {
 		// If there was an exception thrown, the build failed
