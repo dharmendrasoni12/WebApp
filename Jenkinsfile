@@ -39,10 +39,8 @@ node {
 		stage('Publish build info') {
 			server.publishBuildInfo buildInfo
 		}
-	       stage('Deploy - Production') {
-                    steps {
-                         sh './deploy production'
-            }
+	      stage('deploy to tomcat'){
+        deploy adapters: [tomcat7(credentialsId: 'jenkins', path: '', url: 'http://13.59.154.47:8080/')], contextPath: '/QAWebapp', onFailure: false, war: '**/*.war'
         }
 	   	stage ('BlazeMeter test'){
 		    blazeMeterTest credentialsId: 'blazemeter',
