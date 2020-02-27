@@ -66,7 +66,7 @@ node {
 		// stage('deploy to tomcat'){
 		//	deploy adapters: [tomcat7(credentialsId: 'tomcat-tharun', path: '', url: 'http://13.59.154.47:8080/')], contextPath: '/QAWebapp', onFailure: false, war: '**/*.war'
 
-		 }
+		// }
 
 		}
 	} catch (e) {
