@@ -25,7 +25,7 @@ node {
 		}
 		
 		//Step Sonar analysis
-		stage("build & SonarQube analysis") {
+		stage("Build & SonarQube analysis") {
 		  
 			'$SONAR_MAVEN_GOAL -Dsonar.host.url=$SONAR_HOST_URL sonar.sources=. sonar.tests=. sonar.inclusions=/test/java/servlet/createpage_junit.java sonar.test.exclusions=/test/java/servlet/createpage_junit.java -Dsonar.login=daa3f86869fe853d6321d54d2ad9b8931a91dacd -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=*/test/java/servlet/createpage_junit.java -Dsonar.exclusions=*/test/java/servlet/createpage_junit.java'
 		}
@@ -40,10 +40,20 @@ node {
 			server.publishBuildInfo buildInfo
 		}
 		
-	   	
+	   	stage ('BlazeMeter test'){
+		    blazeMeterTest credentialsId:'ad3a9af43cd1ddaac6603162',
+		    serverUrl:'https://a.blazemeter.com',
+		    testId:'53',
+		    notes:'',
+		    sessionProperties:'',
+		    jtlPath:'',
+		    junitPath:'',
+		    getJtl:false,
+		    getJunit:false
+		}		
 		
 		//Step pushing the image to docker hub
-		stage('docker build/push') {
+		stage('Docker build/push') {
 		 docker.withRegistry('', 'docker') {
 		   def app = docker.build("dharmendrasoni12/docker-webapp", '.').push()
 			slackSend message: "Docker image dharmendrasoni12/docker-webapp build and pushed to Docker Hub Repository.";
